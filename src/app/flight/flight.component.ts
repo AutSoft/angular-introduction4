@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Flight} from './models/flight.model';
 
 @Component({
   selector: 'app-flight',
@@ -10,17 +10,15 @@ import {map} from 'rxjs/operators';
 })
 export class FlightComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
-  flightId: number;
+  flightDetails: Flight;
 
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.paramsSubscription = this.activatedRoute.params
-      .pipe(
-        map(params => params.id)
-      )
-      .subscribe((id) => this.flightId = id);
+    this.paramsSubscription = this.activatedRoute.data.subscribe((data: { flight: Flight }) => {
+      this.flightDetails = data.flight;
+    });
   }
 
   ngOnDestroy(): void {
