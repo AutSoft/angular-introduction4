@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayout.lg="row" fxLayout.md="column" fxLayoutAlign="center center">
+  <div>
+    <button mat-raised-button color="primary">
+      <mat-icon>exit_to_app</mat-icon>
+      Log out
+    </button>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter your name" name="insert-name" required />
+    </mat-form-field>
+  </div>
+</div>
+
+<div>
+  <app-fligths-list></app-fligths-list>
+</div>
+
+<router-outlet></router-outlet>
