@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlightComponent } from './flight.component';
 import { FligthsListComponent } from './fligths-list/fligths-list.component';
 import {MatTableModule} from '@angular/material';
+import {FlightRoutingModule} from './flight-routing.module';
 
 @NgModule({
   declarations: [FlightComponent, FligthsListComponent],
@@ -12,7 +13,8 @@ import {MatTableModule} from '@angular/material';
   ],
   imports: [
     CommonModule,
-    MatTableModule
+    MatTableModule,
+    FlightRoutingModule
   ]
 })
 export class FlightModule { }
