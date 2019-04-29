@@ -1,24 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {FlightService} from './flight.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
   styleUrls: ['./flight.component.scss']
 })
-export class FlightComponent implements OnInit {
-  flights: any;
+export class FlightComponent implements OnInit, OnDestroy {
+  paramsSubscription: Subscription;
+  flightId: number;
 
-  constructor(private flightService: FlightService) {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
-    this.flights = this.flightService.listFlight()
-      .subscribe(
-        data => console.log(data),
-        e => console.log(e),
-        () => console.log('completed')
-      );
+  ngOnInit(): void {
+    this.paramsSubscription = this.activatedRoute.params
+      .pipe(
+        map(params => params.id)
+      )
+      .subscribe((id) => this.flightId = id);
+  }
+
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
   }
 
 }
