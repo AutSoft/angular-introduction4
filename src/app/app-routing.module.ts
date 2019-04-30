@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {PageNotFoundComponent} from './core/page-not-found/page-not-found.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -14,8 +15,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'flights',
-    loadChildren: './flight/flight.module#FlightModule'
+    path: '',
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'flights',
+        loadChildren: './flight/flight.module#FlightModule'
+      }
+    ]
   },
   {
     path: '**',
