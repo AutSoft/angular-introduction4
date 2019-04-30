@@ -12,7 +12,7 @@ export class FlightService {
   constructor(private http: HttpClient) {
   }
 
-  listFlight(): Observable<Flight[]> {
+  listFlights(): Observable<Flight[]> {
     return this.http.get<Flight[]>(`${environment.api}/Flights`);
   }
 

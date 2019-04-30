@@ -15,7 +15,7 @@ export class FligthsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.flightService.listFlight().subscribe(flights => this.flights = flights);
+    this.flightService.listFlights().subscribe(flights => this.flights = flights);
   }
 
 }
