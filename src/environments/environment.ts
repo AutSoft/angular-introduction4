@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  api: 'http://szia-backend.herokuapp.com/api'
+  api: 'http://szia-backend.herokuapp.com/api',
+  tokenKey: 'SZIA_TOKEN',
+  tokenValidityEndKey: 'SZIA_TOKEN_VALIDITY_END',
+  userKey: 'SZIA_USER'
 };
 
 /*
