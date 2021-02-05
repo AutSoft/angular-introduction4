@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       {
         path: 'flights',
-        loadChildren: './flight/flight.module#FlightModule'
+        loadChildren: () => import('./flight/flight.module').then(m => m.FlightModule)
       }
     ]
   },
