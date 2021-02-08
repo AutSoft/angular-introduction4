@@ -14,12 +14,12 @@ const routes: Routes = [
   },
   {
     path: 'flights',
-    loadChildren: './flight/flight.module#FlightModule'
+    loadChildren: () => import('./flight/flight.module').then(m => m.FlightModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
